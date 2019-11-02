@@ -29,7 +29,21 @@ function main() {
 //game function
 function game(userChoice) {
     const computerChoice = getComputerChoice();
-    console.log(userChoice, computerChoice);
+    switch(userChoice + computerChoice){
+        case "rockscissors":
+        case "paperrock":
+        case "scissorspaper":
+            console.log("user wins!");
+            break;
+        case "rockpaper":
+        case "paperscissors":
+        case "scissorsrock":
+            console.log("user loses!");
+        case "rockrock":
+        case "paperpaper":
+        case "scissorsscissors":
+            console.log("TIE");
+    }
 }
 
 //computer choice function
