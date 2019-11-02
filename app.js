@@ -29,7 +29,6 @@ function main() {
 //game function
 function game(userChoice) {
     const computerChoice = getComputerChoice();
-    console.log(userChoice, computerChoice);
     switch (userChoice + computerChoice) {
         case "rockscissors":
         case "paperrock":
@@ -54,18 +53,36 @@ function win(userChoice, computerChoice) {
     userScore++;
     userScore_span.innerText = userScore;
     computerScore_span.innerText = computerScore;
-    result_div.innerText = userChoice + " beats " + computerChoice + ". You win!🎉";
+    result_div.innerText = userChoice + "(user) beats " + computerChoice + "(computer). You win!🎉";
+    removeCurrentGlow();
+    document.getElementById(userChoice).classList.add('green-glow'); //classList is a method that gives you an array of all the classes on that specific element.
 }
 
 function lose(userChoice, computerChoice) {
     computerScore++;
     computerScore_span.innerText = computerScore;
     userScore_span.innerText = userScore;
-    result_div.innerText = computerChoice + " beats " + userChoice + ". You lose😢";
+    result_div.innerText = computerChoice + "(computer) beats " + userChoice + "(user). You lose😢";
+    removeCurrentGlow();
+    document.getElementById(userChoice).classList.add('red-glow'); //classList is a method that gives you an array of all the classes on that specific element.
 }
 
 function draw(userChoice) {
-    result_div.innerText = "Tie! Both of you chose " + userChoice;
+    result_div.innerText = "Tie! " + userChoice + " is equal to " + userChoice;
+    removeCurrentGlow();
+    document.getElementById(userChoice).classList.add('gray-glow'); //classList is a method that gives you an array of all the classes on that specific element.
+}
+
+function removeCurrentGlow() {
+    document.getElementById("rock").classList.remove('green-glow');
+    document.getElementById("paper").classList.remove('green-glow');
+    document.getElementById("scissors").classList.remove('green-glow');
+    document.getElementById("rock").classList.remove('red-glow');
+    document.getElementById("paper").classList.remove('red-glow');
+    document.getElementById("scissors").classList.remove('red-glow');
+    document.getElementById("rock").classList.remove('gray-glow');
+    document.getElementById("paper").classList.remove('gray-glow');
+    document.getElementById("scissors").classList.remove('gray-glow');
 }
 
 //computer choice function
