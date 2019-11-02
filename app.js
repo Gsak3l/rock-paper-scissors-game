@@ -1,7 +1,7 @@
 //variables - caching the dom
 //storing something for future use
-const userScore = 0;
-const computerScore = 0;
+var userScore = 0;
+var computerScore = 0;
 const userScore_span = document.getElementById("user-score");
 const computerScore_span = document.getElementById("computer-score");
 //document.querySelector('') can help you get the class instead of the div
@@ -29,21 +29,41 @@ function main() {
 //game function
 function game(userChoice) {
     const computerChoice = getComputerChoice();
-    switch(userChoice + computerChoice){
+    console.log(userChoice, computerChoice);
+    switch (userChoice + computerChoice) {
         case "rockscissors":
         case "paperrock":
         case "scissorspaper":
-            console.log("user wins!");
+            win(userChoice, computerChoice);
             break;
         case "rockpaper":
         case "paperscissors":
         case "scissorsrock":
-            console.log("user loses!");
+            lose(userChoice, computerChoice);
+            break;
         case "rockrock":
         case "paperpaper":
         case "scissorsscissors":
-            console.log("TIE");
+            draw(userChoice, computerChoice);
+            break;
     }
+}
+
+//functions for any possible outcome
+function win(user, computer) {
+    userScore++; 
+    userScore_span.innerText = userScore;
+    computerScore_span.innerText = computerScore;
+}
+
+function lose(user, computer) {
+    computerScore++;
+    computerScore_span.innerText = computerScore;
+    userScore_span.innerText = userScore;
+}
+
+function draw(user, computer) {
+
 }
 
 //computer choice function
