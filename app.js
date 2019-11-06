@@ -2,6 +2,8 @@
 //storing something for future use
 var userScore = 0;
 var computerScore = 0;
+var totalUserScore = 0; 
+var totalComputerScore = 0;
 const userScore_span = document.getElementById("user-score");
 const computerScore_span = document.getElementById("computer-score");
 //document.querySelector('') can help you get the class instead of the div
@@ -10,7 +12,9 @@ const result_div = document.querySelector(".result p");
 const rock_div = document.getElementById("rock");
 const paper_div = document.getElementById("paper");
 const scissors_div = document.getElementById("scissors");
+const game_over_div = document.querySelector(".game-over p")
 const choices = ['rock', 'paper', 'scissors'];
+const images = ['./img/icons8-hand-rock-96.png', './img/icons8-hand-96.png', './img/icons8-hand-scissors-96.png'];
 
 //main function
 function main() {
@@ -28,6 +32,10 @@ function main() {
 
 //game function
 function game(userChoice) {
+    if (computerScore === 3 || userScore === 3) {
+        userScore = 0;
+        computerScore = 0;
+    }
     const computerChoice = getComputerChoice();
     switch (userChoice + computerChoice) {
         case "rockscissors":
@@ -46,6 +54,20 @@ function game(userChoice) {
             draw(userChoice);
             break;
     }
+    if (computerScore > 2) {
+        totalComputerScore++; 
+        endThis("You lost this round😢<br>" + totalUserScore + "-" + totalComputerScore);
+    } else if (userScore > 2) {
+        totalUserScore++;
+        endThis("You won this round!👌" + totalUserScore + "-" + totalComputerScore);
+    } 
+}
+
+function endThis(text) {
+    game_over_div.innerHTML = text;
+    removeCurrentGlow();
+    userScore_span.innerText = userScore;
+    computerScore_span.innerText = computerScore;
 }
 
 //functions for any possible outcome
